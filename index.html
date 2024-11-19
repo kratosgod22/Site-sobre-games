@@ -1,11 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+import requests
+import json
+
+# Sua chave de API do NewsAPI
+api_key = "SUA_CHAVE_DE_API_AQUI"
+
+# URL da API do NewsAPI para buscar as notícias
+url = "https://newsapi.org/v2/everything"
+
+# Parâmetros de consulta (query) para buscar notícias sobre games
+params = {
+    "q": "games OR videogames OR jogos",  # Palavras-chave relacionadas a games
+    "apiKey": api_key,                    # Chave da API
+    "language": "pt",                      # Idioma das notícias (português)
+    "sortBy": "publishedAt",               # Ordenar por data de publicação
+    "pageSize": 5                          # Número de notícias a retornar
+}
+
+# Fazendo a requisição para a API
+response = requests.get(url, params=params)
+
+# Verificando se a requisição foi bem-sucedida
+if response.status_code == 200:
+    # Convertendo a resposta JSON em um dicionário Python
+    data = response.json()
+
+    # Exibindo as notícias
+    if data["status"] == "ok":
+        print("Últimas notícias sobre games:")
+        for article in data["articles"]:
+            print(f"\nTítulo: {article['title']}")
+            print(f"Fonte: {article['source']['name']}")
+            print(f"Descrição: {article['description']}")
+            print(f"Link: {article['url']}")
+            print(f"Publicado em: {article['publishedAt']}")
+            print("=" * 50)
+    else:
+        print("Não foi possível obter as notícias.")
+else:
+    print(f"Erro na requisição. Código de status: {response.status_code}")
