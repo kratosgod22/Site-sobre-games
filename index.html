@@ -6,76 +6,135 @@
     <link rel="stylesheet" href="style.css">
     <title>Últimas Notícias sobre Games</title>
 </head>
+
 <body>
 
-<header>
-    <h1>Últimas Notícias sobre Games</h1>
-</header>
+    <header>
+        <h1>Últimas Notícias sobre Games</h1>
+    </header>
 
-<div class="container" id="news-container">
-    <p>Carregando notícias...</p>
-</div>
+    <div class="container" id="news-container">
+        <p>Carregando notícias...</p>
+    </div>
 
-<footer>
-    <p>&copy; 2024 Notícias de Games</p>
-</footer>
+    <footer>
+        <p>&copy; 2024 Notícias de Games</p>
+    </footer>
 
-<script>
-    const apiKey = 'SUA_CHAVE_DE_API_AQUI';  // Substitua pela sua chave da NewsAPI
-    const url = `https://newsapi.org/v2/everything?q=games OR videogames OR jogos&apiKey=${apiKey}&language=pt&sortBy=publishedAt&pageSize=5`;
+    <script>
+        const apiKey = 'SUA_CHAVE_DE_API_AQUI';  // Substitua pela sua chave da NewsAPI
+        const url = `https://newsapi.org/v2/everything?q=games OR videogames OR jogos&apiKey=${apiKey}&language=pt&sortBy=publishedAt&pageSize=5`;
 
-    // Função para obter e exibir as notícias
-    async function fetchNews() {
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
+        // Função para obter e exibir as notícias
+        async function fetchNews() {
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
 
-            if (data.status === "ok") {
-                const newsContainer = document.getElementById('news-container');
-                newsContainer.innerHTML = '';  // Limpar o conteúdo atual
+                if (data.status === "ok") {
+                    const newsContainer = document.getElementById('news-container');
+                    newsContainer.innerHTML = '';  // Limpar o conteúdo atual
 
-                data.articles.forEach(article => {
-                    // Criando um elemento para cada notícia
-                    const newsItem = document.createElement('div');
-                    newsItem.classList.add('news-item');
+                    data.articles.forEach(article => {
+                        // Criando um elemento para cada notícia
+                        const newsItem = document.createElement('div');
+                        newsItem.classList.add('news-item');
 
-                    // Criando título da notícia
-                    const title = document.createElement('h2');
-                    title.textContent = article.title;
-                    newsItem.appendChild(title);
+                        // Criando título da notícia
+                        const title = document.createElement('h2');
+                        title.textContent = article.title;
+                        newsItem.appendChild(title);
 
-                    // Criando descrição da notícia
-                    const description = document.createElement('p');
-                    description.textContent = article.description || "Sem descrição disponível.";
-                    newsItem.appendChild(description);
+                        // Criando descrição da notícia
+                        const description = document.createElement('p');
+                        description.textContent = article.description || "Sem descrição disponível.";
+                        newsItem.appendChild(description);
 
-                    // Criando link para a notícia completa
-                    const link = document.createElement('a');
-                    link.href = article.url;
-                    link.target = '_blank';
-                    link.textContent = 'Leia mais';
-                    newsItem.appendChild(link);
+                        // Criando link para a notícia completa
+                        const link = document.createElement('a');
+                        link.href = article.url;
+                        link.target = '_blank';
+                        link.textContent = 'Leia mais';
+                        newsItem.appendChild(link);
 
-                    // Adicionando a notícia à lista
-                    newsContainer.appendChild(newsItem);
-                });
-            } else {
-                alert("Erro ao obter as notícias.");
+                        // Adicionando a notícia à lista
+                        newsContainer.appendChild(newsItem);
+                    });
+                } else {
+                    alert("Erro ao obter as notícias.");
+                }
+            } catch (error) {
+                console.error("Erro:", error);
+                alert("Ocorreu um erro ao carregar as notícias.");
             }
-        } catch (error) {
-            console.error("Erro:", error);
-            alert("Ocorreu um erro ao carregar as notícias.");
         }
-    }
 
-    // Chama a função para buscar as notícias quando a página carregar
-    fetchNews();
-</script>
+        // Chama a função para buscar as notícias quando a página carregar
+        fetchNews();
+    </script>
 
 </body>
+
 </html>
-"title": "Marvel Rivals Launch",
-"body": "The long-awaited game will be released on December 5th...",
-"publication_data": "2024-12-02T12:00:00",
-"author": "Author Name"Erick Marcelo Bernardes,
-"imagem_url": "jogo-x-imagem.jpg",
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notícias de Games</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .news-container {
+            padding: 20px;
+        }
+
+        .news-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        .news-title {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .news-content {
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Notícias de Games</h1>
+    </div>
+    <div class="news-container">
+        <div class="news-item">
+            <h2 class="news-title">Lançamento de GTA VI é anunciado!</h2>
+            <p class="news-content">O tão aguardado GTA VI foi oficialmente anunciado pela Rockstar Games e promete
+                revolucionar o mundo dos games.</p>
+            <p class="news-date">Publicado em: 02/12/2024</p>
+        </div>
+        <div class="news-item">
+            <h2 class="news-title">Novo console surpreende o mercado</h2>
+            <p class="news-content">A nova geração de consoles promete gráficos realistas e desempenho incomparável.</p>
+            <p class="news-date">Publicado em: 01/12/2024</p>
+        </div>
+    </div>
+</body>
+</html
